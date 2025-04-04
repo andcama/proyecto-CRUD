@@ -152,13 +152,6 @@ Si desea cargar datos adicionales, puede ejecutar el script disponible en `scrip
 - `POST /api/Auth/login`: Iniciar sesión 
 - `POST /api/Auth/logout`: Cerrar sesión
 
-### Clientes
-- `GET /api/Clientes`: Obtener todos los clientes
-- `GET /api/Clientes/{cedula}`: Obtener un cliente por cédula
-- `POST /api/Clientes`: Crear un nuevo cliente
-- `PUT /api/Clientes/{cedula}`: Actualizar un cliente
-- `DELETE /api/Clientes/{cedula}`: Eliminar un cliente
-- `GET /api/Clientes/search?term={termino}`: Buscar clientes
 
 ### Pólizas
 - `GET /api/Polizas`: Obtener todas las pólizas

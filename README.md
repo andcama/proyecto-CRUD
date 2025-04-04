@@ -94,6 +94,11 @@ La aplicación viene preconfigurada con datos iniciales para pruebas:
 - **Usuario**: admin
 - **Contraseña**: Admin123
 
+
+### Otros usuarios (En archivo bak de restauracion)
+- **Usuario**: testuser
+- **Contraseña**: testuser
+
 ### Catálogos
 - Tipos de póliza (Vida, Auto, Hogar, Salud, Viaje)
 - Estados de póliza (Activa, Cancelada, Vencida, En Trámite)

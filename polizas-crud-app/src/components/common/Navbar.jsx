@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -16,7 +16,7 @@ const Navbar = () => {
         <Link className="navbar-brand" to="/">
           Sistema de Pólizas
         </Link>
-        
+
         <button
           className="navbar-toggler"
           type="button"
@@ -25,7 +25,7 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
@@ -39,16 +39,13 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          
+
           {user && (
             <div className="d-flex align-items-center">
               <span className="text-white me-3">
                 Bienvenido, {user.username}
               </span>
-              <button
-                className="btn btn-outline-light"
-                onClick={handleLogout}
-              >
+              <button className="btn btn-outline-light" onClick={handleLogout}>
                 Cerrar Sesión
               </button>
             </div>

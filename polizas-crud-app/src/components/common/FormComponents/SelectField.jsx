@@ -1,11 +1,11 @@
-import { useField } from 'formik';
+import { useField } from "formik";
 
 const SelectField = ({
   label,
   name,
   options = [],
-  placeholder = 'Seleccione una opción',
-  className = '',
+  placeholder = "Seleccione una opción",
+  className = "",
   disabled = false,
   onChange,
   ...props
@@ -15,7 +15,7 @@ const SelectField = ({
   const handleChange = (e) => {
     // Call Formik's setValue
     helpers.setValue(e.target.value);
-    
+
     // Call custom onChange handler if provided
     if (onChange) {
       onChange(e, helpers.form);
@@ -29,12 +29,14 @@ const SelectField = ({
           {label}
         </label>
       )}
-      
+
       <select
         id={name}
         {...field}
         onChange={handleChange}
-        className={`form-select ${className} ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+        className={`form-select ${className} ${
+          meta.touched && meta.error ? "is-invalid" : ""
+        }`}
         disabled={disabled}
         {...props}
       >
@@ -45,7 +47,7 @@ const SelectField = ({
           </option>
         ))}
       </select>
-      
+
       {meta.touched && meta.error ? (
         <div className="invalid-feedback">{meta.error}</div>
       ) : null}

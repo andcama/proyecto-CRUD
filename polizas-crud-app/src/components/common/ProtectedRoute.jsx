@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
-import Navbar from './Navbar';
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
+import Navbar from "./Navbar";
 
 const ProtectedRoute = () => {
   const { isAuthenticated, loading } = useAuth();

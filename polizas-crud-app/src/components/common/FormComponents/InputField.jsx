@@ -1,11 +1,11 @@
-import { Field, ErrorMessage } from 'formik';
+import { Field, ErrorMessage } from "formik";
 
 const InputField = ({
   label,
   name,
-  type = 'text',
-  placeholder = '',
-  className = '',
+  type = "text",
+  placeholder = "",
+  className = "",
   disabled = false,
 }) => {
   return (
@@ -15,7 +15,7 @@ const InputField = ({
           {label}
         </label>
       )}
-      
+
       <Field
         id={name}
         name={name}
@@ -24,7 +24,7 @@ const InputField = ({
         className={`form-control ${className}`}
         disabled={disabled}
       />
-      
+
       <ErrorMessage
         name={name}
         component="div"

@@ -1,11 +1,11 @@
-import { useField } from 'formik';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useField } from "formik";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DatePickerField = ({
   label,
   name,
-  className = '',
+  className = "",
   disabled = false,
   ...props
 }) => {
@@ -18,7 +18,7 @@ const DatePickerField = ({
           {label}
         </label>
       )}
-      
+
       <ReactDatePicker
         id={name}
         selected={field.value ? new Date(field.value) : null}
@@ -28,7 +28,7 @@ const DatePickerField = ({
         disabled={disabled}
         {...props}
       />
-      
+
       {meta.touched && meta.error ? (
         <div className="text-danger mt-1 small">{meta.error}</div>
       ) : null}

@@ -1,41 +1,34 @@
-import { useState,useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import { policyValidationSchema } from '../../utils/validators';
+import { useState, useEffect } from "react";
+import { Formik, Form } from "formik";
+import { policyValidationSchema } from "../../utils/validators";
 
-import InputField from '../common/FormComponents/InputField';
-import SelectField from '../common/FormComponents/SelectField';
-import DatePickerField from '../common/FormComponents/DatePicker';
-import policyService from '../../services/policyService';
-import { data } from 'react-router-dom';
+import InputField from "../common/FormComponents/InputField";
+import SelectField from "../common/FormComponents/SelectField";
+import DatePickerField from "../common/FormComponents/DatePicker";
+import policyService from "../../services/policyService";
+import { data } from "react-router-dom";
 
 const PolicySearch = ({ onSearch, onClear }) => {
- 
   const [isExpanded, setIsExpanded] = useState(false);
   const [searching, setSearching] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [policyTypes, setPolicyTypes] = useState([]);
- 
- 
 
   const initialValues = {
-    numeroPoliza: '',
-    tipoPolizaId: '',
-    cedulaAsegurado: '',
+    numeroPoliza: "",
+    tipoPolizaId: "",
+    cedulaAsegurado: "",
     fechaVencimiento: null,
-    nombreAsegurado: '',
+    nombreAsegurado: "",
   };
   useEffect(() => {
     // Load data
     const loadData = async () => {
-   
       try {
-        loadPolicyTypes()
-    
-       
+        loadPolicyTypes();
       } catch (err) {
-        console.error('Error loading data:', err);
+        console.error("Error loading data:", err);
       } finally {
-       
       }
     };
     loadData();
@@ -43,15 +36,15 @@ const PolicySearch = ({ onSearch, onClear }) => {
   const loadPolicyTypes = async () => {
     try {
       const types = await policyService.getPolicyTypes();
-      const formattedTypes = types.map(type => ({
+      const formattedTypes = types.map((type) => ({
         value: type.id,
-        label: type.nombre
+        label: type.nombre,
       }));
       setPolicyTypes(formattedTypes);
       return formattedTypes;
     } catch (err) {
-      console.error('Error loading policy types:', err);
-      setError('Error al cargar los tipos de póliza');
+      console.error("Error loading policy types:", err);
+      setError("Error al cargar los tipos de póliza");
       return [];
     }
   };
@@ -59,29 +52,29 @@ const PolicySearch = ({ onSearch, onClear }) => {
   const handleSubmit = async (values) => {
     try {
       setSearching(true);
-      setError('');
+      setError("");
 
       // Remove empty values
       const searchParams = Object.fromEntries(
-        Object.entries(values).filter(([_, value]) =>
-          value !== null && value !== undefined && value !== ''
+        Object.entries(values).filter(
+          ([_, value]) => value !== null && value !== undefined && value !== ""
         )
       );
 
       // Only search if at least one field has a value
       if (Object.keys(searchParams).length === 0) {
-        setError('Ingrese al menos un criterio de búsqueda');
+        setError("Ingrese al menos un criterio de búsqueda");
         return;
       }
 
       const results = await policyService.searchPolicies(searchParams);
 
-      if (results.items && results.items.length === 0 ) {
-        setError('No se encontraron polizas')
+      if (results.items && results.items.length === 0) {
+        setError("No se encontraron polizas");
       }
       onSearch(results);
     } catch (err) {
-      setError('Error al realizar la búsqueda');
+      setError("Error al realizar la búsqueda");
       console.error(err);
     } finally {
       setSearching(false);
@@ -101,20 +94,22 @@ const PolicySearch = ({ onSearch, onClear }) => {
             className="btn btn-link text-decoration-none p-0"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <i className={`bi bi-chevron-${isExpanded ? 'up' : 'down'} me-2`}></i>
+            <i
+              className={`bi bi-chevron-${isExpanded ? "up" : "down"} me-2`}
+            ></i>
             Buscar Pólizas
           </button>
         </h5>
       </div>
 
-      <div className={`card-body ${isExpanded ? '' : 'd-none'}`}>
+      <div className={`card-body ${isExpanded ? "" : "d-none"}`}>
         {error && (
           <div className="alert alert-danger" role="alert">
             {error}
           </div>
         )}
 
-        <Formik initialValues={initialValues } onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
           {({ resetForm }) => (
             <Form>
               <div className="row">
@@ -131,7 +126,6 @@ const PolicySearch = ({ onSearch, onClear }) => {
                     label="Tipo de Póliza *"
                     name="tipoPolizaId"
                     options={policyTypes}
-
                   />
                 </div>
 
@@ -170,7 +164,11 @@ const PolicySearch = ({ onSearch, onClear }) => {
                 >
                   {searching ? (
                     <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
                       Buscando...
                     </>
                   ) : (

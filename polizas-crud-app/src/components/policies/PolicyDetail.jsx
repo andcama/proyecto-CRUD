@@ -1,14 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import policyService from '../../services/policyService';
-import { formatDate, formatCurrency, formatID, getPolicyStatusText, getPolicyTypeText } from '../../utils/formatters';
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import policyService from "../../services/policyService";
+import {
+  formatDate,
+  formatCurrency,
+  formatID,
+  getPolicyStatusText,
+  getPolicyTypeText,
+} from "../../utils/formatters";
 
 const PolicyDetail = () => {
   const { id } = useParams();
   const [policy, setPolicy] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [coverageOptions,setCoverageOptions]= useState();
+  const [error, setError] = useState("");
+  const [coverageOptions, setCoverageOptions] = useState();
   useEffect(() => {
     loadPolicy();
     loadCoverages();
@@ -20,7 +26,7 @@ const PolicyDetail = () => {
       const data = await policyService.getCoverages();
       setCoverageOptions(data);
     } catch (err) {
-      setError('Error al cargar los detalles de la póliza');
+      setError("Error al cargar los detalles de la póliza");
       console.error(err);
     } finally {
       setLoading(false);
@@ -33,7 +39,7 @@ const PolicyDetail = () => {
       const data = await policyService.getPolicyById(id);
       setPolicy(data);
     } catch (err) {
-      setError('Error al cargar los detalles de la póliza');
+      setError("Error al cargar los detalles de la póliza");
       console.error(err);
     } finally {
       setLoading(false);
@@ -84,7 +90,9 @@ const PolicyDetail = () => {
         <div className="card-body">
           <div className="row">
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Número de Póliza:</strong>
+              <strong className="d-block text-muted mb-1">
+                Número de Póliza:
+              </strong>
               <div>{policy.numeroPoliza}</div>
             </div>
             <div className="col-md-6 mb-3">
@@ -95,13 +103,23 @@ const PolicyDetail = () => {
 
           <div className="row">
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Cédula del Asegurado:</strong>
+              <strong className="d-block text-muted mb-1">
+                Cédula del Asegurado:
+              </strong>
               <div>{formatID(policy.cedulaAsegurado)}</div>
             </div>
             <div className="col-md-6 mb-3">
               <strong className="d-block text-muted mb-1">Estado:</strong>
               <div>
-                <span className={`badge ${policy.estadoPolizaNombre === 'active' ? 'bg-success' : policy.estadoPolizaNombre === 'expired' ? 'bg-danger' : 'bg-warning'}`}>
+                <span
+                  className={`badge ${
+                    policy.estadoPolizaNombre === "active"
+                      ? "bg-success"
+                      : policy.estadoPolizaNombre === "expired"
+                      ? "bg-danger"
+                      : "bg-warning"
+                  }`}
+                >
                   {getPolicyStatusText(policy.estadoPolizaNombre)}
                 </span>
               </div>
@@ -110,7 +128,9 @@ const PolicyDetail = () => {
 
           <div className="row">
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Monto Asegurado:</strong>
+              <strong className="d-block text-muted mb-1">
+                Monto Asegurado:
+              </strong>
               <div>{formatCurrency(policy.montoAsegurado)}</div>
             </div>
             <div className="col-md-6 mb-3">
@@ -121,11 +141,15 @@ const PolicyDetail = () => {
 
           <div className="row">
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Fecha de Emisión:</strong>
+              <strong className="d-block text-muted mb-1">
+                Fecha de Emisión:
+              </strong>
               <div>{formatDate(policy.fechaEmision)}</div>
             </div>
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Fecha de Vencimiento:</strong>
+              <strong className="d-block text-muted mb-1">
+                Fecha de Vencimiento:
+              </strong>
               <div>{formatDate(policy.fechaVencimiento)}</div>
             </div>
           </div>
@@ -136,7 +160,9 @@ const PolicyDetail = () => {
               <div>{formatDate(policy.periodo)}</div>
             </div>
             <div className="col-md-6 mb-3">
-              <strong className="d-block text-muted mb-1">Fecha de Inclusión:</strong>
+              <strong className="d-block text-muted mb-1">
+                Fecha de Inclusión:
+              </strong>
               <div>{formatDate(policy.fechaInclusion)}</div>
             </div>
           </div>

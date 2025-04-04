@@ -26,6 +26,14 @@
   -- Sample Cliente
   INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
   ('123456789', 'Juan', 'Pérez', 'García', 'Física', '1980-01-15');
+ INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
+  ('111111111', 'Pedro', 'Rojas', 'Bustamante', 'Física', '1980-01-15');
+ INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
+  ('222222222', 'Maria', 'Trejos', 'Fonseca', 'Física', '1980-01-15');
+ INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
+  ('555555555', 'David', 'Carazo', 'Azpfeifa', 'Física', '1980-01-15');
+INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
+  ('987654321', 'Gabriel', 'Castro', 'Gamboa', 'Física', '1980-01-15');
 
   -- Sample Usuario (password: Admin123)
   INSERT INTO Usuarios (Username, PasswordHash, PasswordSalt, Email) VALUES

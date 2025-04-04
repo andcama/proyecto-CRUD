@@ -1,0 +1,89 @@
+-- Tipos de Póliza
+  INSERT INTO TiposPoliza (Id, Nombre) VALUES
+  (1, 'Vida'),
+  (2, 'Auto'),
+  (3, 'Hogar'),
+  (4, 'Salud'),
+  (5, 'Viaje');
+
+  -- Estados de Póliza
+  INSERT INTO EstadosPoliza (Id, Nombre) VALUES
+  (1, 'Activa'),
+  (2, 'Cancelada'),
+  (3, 'Vencida'),
+  (4, 'En Trámite');
+
+  -- Coberturas
+  INSERT INTO Coberturas (Id, Nombre, Descripcion) VALUES
+  (1, 'Responsabilidad Civil', 'Cubre daños a terceros'),
+  (2, 'Robo', 'Cubre pérdidas por robo'),
+  (3, 'Incendio', 'Cubre daños por incendio'),
+  (4, 'Daños materiales', 'Cubre daños a la propiedad asegurada'),
+  (5, 'Accidentes personales', 'Cubre lesiones personales'),
+  (6, 'Asistencia médica', 'Cubre gastos médicos'),
+  (7, 'Fallecimiento', 'Indemnización por fallecimiento');
+
+  -- Sample Cliente
+  INSERT INTO Clientes (CedulaAsegurado, Nombre, PrimerApellido, SegundoApellido, TipoPersona, FechaNacimiento) VALUES
+  ('123456789', 'Juan', 'Pérez', 'García', 'Física', '1980-01-15');
+
+  -- Sample Usuario (password: Admin123)
+  INSERT INTO Usuarios (Username, PasswordHash, PasswordSalt, Email) VALUES
+  ('admin', 0x2F32344D36416477694A68424E533343386E4B49454445374C414F7A364A6A52446F4B64766551706B3D, 0x334D76526449347A4C42514B4A6A774B314A47784B707A667A396A5A6254706A6B7A6B3477497A4671565
+  A35344A5655506146434559395036544153624676614A70512F44785053624F36625132624F6873754752557745784B6A4A376E6C7842534B45544E517934616153794D7A5773594B45683647626E516C30644B58655244524D57674E
+  50374E764E344577567A476B6E6F6A446132547A4B595444386A5656617944766F4A6A7A594A746C616A35374D464B534F674372522F4A55303D, 'admin@example.com');
+
+
+
+----------------------------------------------------------------------
+
+INSERT INTO Polizas (NumeroPoliza, TipoPolizaId, CedulaAsegurado, MontoAsegurado, FechaVencimiento,
+                       FechaEmision, EstadoPolizaId, Prima, Periodo, FechaInclusion, Aseguradora)
+  VALUES
+  -- Auto insurance policy
+  ('POL-AUTO-001', 2, '123456789', 25000.00, '2025-12-31', '2023-01-01',
+   1, 1200.00, '2023-01-01', '2023-01-01', 'Seguros XYZ'),
+
+  -- Life insurance policy
+  ('POL-VIDA-001', 1, '123456789', 100000.00, '2033-01-01', '2023-01-15',
+   1, 3500.00, '2023-01-15', '2023-01-15', 'Aseguradora ABC'),
+
+  -- Home insurance policy
+  ('POL-HOGAR-001', 3, '123456789', 150000.00, '2024-06-30', '2023-06-30',
+   1, 900.00, '2023-06-30', '2023-06-30', 'Seguros XYZ'),
+
+  -- Health insurance policy
+  ('POL-SALUD-001', 4, '123456789', 50000.00, '2024-03-15', '2023-03-15',
+   1, 2400.00, '2023-03-15', '2023-03-15', 'MediSeguro');
+
+  -- Sample PolizaCoberturas data
+  INSERT INTO PolizaCoberturas (NumeroPoliza, CoberturaId)
+  VALUES
+  -- Auto policy coverages
+  ('POL-AUTO-001', 1), -- Responsabilidad Civil
+  ('POL-AUTO-001', 2), -- Robo
+  ('POL-AUTO-001', 4), -- Daños materiales
+
+  -- Life policy coverages
+  ('POL-VIDA-001', 7), -- Fallecimiento
+
+  -- Home policy coverages
+  ('POL-HOGAR-001', 2), -- Robo
+  ('POL-HOGAR-001', 3), -- Incendio
+  ('POL-HOGAR-001', 4), -- Daños materiales
+
+  -- Health policy coverages
+  ('POL-SALUD-001', 5), -- Accidentes personales
+  ('POL-SALUD-001', 6); -- Asistencia médica
+
+
+
+--------------------------
+Comandos seed database
+
+Add-Migration [MigrationName]   # Create new migration
+  Update-Database                 # Apply migrations
+  Remove-Migration                # Remove last migration
+  Get-Migration                   # List all migrations
+  Script-Migration                # Generate SQL script
+  Update-Database -Migration 0    # Revert all migrations

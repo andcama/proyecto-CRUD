@@ -201,7 +201,6 @@ Update-Database -Migration 0    # Revertir todas las migraciones
 
 ## Mejores Prácticas y Seguridad
 
-- La aplicación implementa JWT para autenticación segura
 - Las contraseñas se almacenan con hash y salt
 - Las validaciones se implementan tanto en el backend como en el frontend
 - La API está documentada con Swagger
